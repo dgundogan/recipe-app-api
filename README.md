@@ -18,4 +18,13 @@ docker-compose run app sh -c "python manage.py  startapp core"
 docker-compose run app sh -c "python manage.py makemigrations core"
 
 ### Test & Lint
-docker-compose run app sh -c "python manage.py test && flake8"
+docker-compose run --rm app sh -c "python manage.py test && flake8"
+
+### App url 
+http://127.0.0.1:8000/
+
+### create a superuser
+docker-compose run app sh -c "python manage.py createsuperuser"
+
+## creating a user app
+docker-compose run --rm app sh -c "python manage.py startapp user"
