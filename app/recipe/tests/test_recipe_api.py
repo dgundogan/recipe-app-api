@@ -17,13 +17,16 @@ def detail_url(recipe_id):
     """Return recipe detail URL"""
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
+
 def sample_tag(user, name='Main course'):
     """Create and return a sample tag"""
     return Tag.objects.create(user=user, name=name)
 
+
 def sample_ingredient(user, name='Clinnamon'):
     """Create and return a sample ingredient"""
     return Ingredient.objects.create(user=user, name=name)
+
 
 def sample_recipe(user, **params):
     """Create and return a sample recipe"""
@@ -49,7 +52,7 @@ class PublicRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    
+
 class PrivateRecipeApiTests(TestCase):
     """Test unauthenticated recipe API access"""
 
@@ -101,17 +104,3 @@ class PrivateRecipeApiTests(TestCase):
 
         serializer = RecipeDetailSerializer(recipe)
         self.assertEqual(res.data, serializer.data)
-
- #   def test_create_basic_recipe(self):
- #       """Test creating recipe"""
- #       payload = {
- #           'title': 'Chocolate cheesecake',
- #           'time_minutes': 30,
- #           'price': 5.00
- #       }
- #       res = self.client.post(RECIPES_URL, payload)
- #       
- #       self.assertEqual(res.status_code, status.HTTP_201_CREATED)
- #       recipe = Recipe.objects.get(id=res.data['id'])
- #       for key in payload.keys():
-        
